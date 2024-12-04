@@ -4,11 +4,11 @@ import { join } from 'path';
 
 const bannerOrmConfig = new DataSource({
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: '',
-  database: 'microservice_banner',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT) || 3306,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   entities: [User],
   migrations: [join(__dirname, './migrations/*{.ts,.js}')],
   synchronize: false,
