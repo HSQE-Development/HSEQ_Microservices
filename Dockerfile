@@ -10,4 +10,4 @@ RUN apt-get update && \
 RUN npm install
 COPY . .
 RUN npm run build
-CMD npx typeorm-ts-node-commonjs migration:run -d src/banner-service/ormconfig.ts && npm run start:prod
+CMD sh -c "/usr/local/bin/wait-for-it.sh ${DB_HOST}:${DB_PORT} -- npx typeorm-ts-node-commonjs migration:run -d src/banner-service/ormconfig.ts && npm run start:prod"

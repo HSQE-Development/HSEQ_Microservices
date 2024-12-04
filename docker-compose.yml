@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: sh -c "/usr/local/bin/wait-for-it.sh 162.215.135.37:33080
+    command: sh -c "/usr/local/bin/wait-for-it.sh ${DATABASE_HOST}:${DATABASE_PORT} -- npx typeorm-ts-node-commonjs migration:run -d src/banner-service/ormconfig.ts && npm run start:prod
     restart: always
     container_name: hseq_microservices
     ports:
